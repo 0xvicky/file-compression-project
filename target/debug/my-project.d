@@ -1,1 +1,1 @@
-/home/runner/file-compression-project/target/debug/my-project: /home/runner/file-compression-project/src/main.rs
+E:\Code\Rust\file-compression-project\target\debug\my-project.exe: E:\Code\Rust\file-compression-project\src\main.rs

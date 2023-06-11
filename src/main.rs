@@ -10,13 +10,21 @@ use std::io::BufReader;
 use std::time::Instant;
 
 fn main(){
-    if(args().len()!=3){
+    if args().len()!=3 {
         eprintln!("Usage `source` `target`");
         return;
     }
-    let mut input = BufReader::new(File.open(args().nth(1).unwrap()).unwrap());
+    let mut input = BufReader::new(File::open(args().nth(1).unwrap()).unwrap());
     let output = File::create(args().nth(2).unwrap()).unwrap();
-    let encoder = GzEncoder::new(output, Compression::default());
-    
+    let mut encoder = GzEncoder::new(output, Compression::default());
+
+    let start = Instant::now();
+    copy(&mut input, &mut encoder).unwrap();
+    let output = encoder.finish().unwrap();
+    println!("Input File Size:{:?}",input.get_ref().metadata().unwrap().len());
+println!("Compressed File size:{:?}",output.metadata().unwrap().len());
+println!("Elapsed Time:{:?}", start.elapsed());
+
+
     
 }
